@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "mdlinks-lauflorez",
   "version": "0.1.0",
   "engines": {
     "node": ">=16.x"
@@ -8,5 +8,32 @@
     "createdAt": "2023-03-02T14:34:23.772Z",
     "version": "5.6.0",
     "commit": "ffa75c8b2bede153844195479abeff01f3e34227"
+  },
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauraflorezt/DEV004-md-links.git"
+  },
+  "author": "Laura Florez Toro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lauraflorezt/DEV004-md-links/issues"
+  },
+  "homepage": "https://github.com/lauraflorezt/DEV004-md-links#readme",
+
+  "dependencies": {
+    "axios": "^1.4.0",
+    "chalk": "^4.1.2",
+    "jest": "^29.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.39.0"
   }
 }
