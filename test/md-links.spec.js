@@ -1,16 +1,15 @@
-import  mdLinks  from 'index.js';
+import  existPath  from './';
 
-describe('mdLinks', () => {
-
-  it('should...', () => {
-    console.log('FIX ME!');
+describe("existPath", () => {
+  it("Debe ser una función", () => {
+    expect(typeof existPath).toBe("function");
   });
-  /*it('Deberia devolver una promesa', () => {
-    expect(mdLinks()).toBe(typeof Promise);
-  });*/
-  it('Debe rechazar cuando el path no existe', () => {
-  return mdLinks('/laura/cursos/noexiste.md').catch((error) => {
-  expect(error).toBe('la ruta no existe')
-  })
-  })
-})
+  it("Debe validar cuando el path existe", () => {
+    existPath("testing/archivo.md");
+    expect(existPath("testing/archivo.md")).toEqual(true);
+  });
+  it("Debe validar cuando el path no existe", () => {
+    existPath("./Laura/test1.md");
+    expect(existPath("./Laura/test1.md")).toEqual(false);
+  });
+});
