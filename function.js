@@ -37,7 +37,7 @@ const analyzeMdFilesArray = (mdFilesArray) => {
     mdFilesArray.forEach((file, index) => {
       fs.readFile(`${file}`, 'utf-8', (err, content) => {
         if (err) {
-          reject(chalk.bgRed.bold('---------- ERROR: Analyze .md Files ----------'));
+          reject(chalk.bgRed.bold('------ ERROR: Analizar archivos md. ------'));
         } else {
           backupArray.push(getLinksDocument(file, content));
           const merge = [].concat(...backupArray)
@@ -80,7 +80,7 @@ const textRegex = /\[(\w+.+?)\]/gi;
 const getLinksDocument = (file, content) => {
   const arrayResponse = []
   if (!linksRegex.test(content)) { //valida las coincidencias con respecto a la expresión regular de texto, si es falsa
-    console.log(chalk.bgRed.bold('---------- ERROR: Dont exist Links on the path ' + `${file}` + ' ----------'))
+    console.log(chalk.bgRed.bold('------ ERROR: No existen enlaces en la ruta ' +  `${file}` + '------'))
     return []
   } else {
     const matches = content.match(linksRegex) // Obtiene las coincidencias de las expresiones regulares

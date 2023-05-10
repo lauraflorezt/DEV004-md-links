@@ -29,7 +29,7 @@ import {existPath,
             mdFilesArray.push(file); // En caso de encontrarlo lo almacena en un array
           }else{
             if(mdFilesArray === []){ // Valida que en caso de no encontrar archivos .MD muestre el mensaje informativo
-              console.log(chalk.bgYellow.bold('---------- WARNING: no .md files ----------'));
+              console.log(chalk.bgYellow.bold('------ ADVERTENCIA: no hay archivos .md ------'));
             }
           }
         });
@@ -39,7 +39,7 @@ import {existPath,
           mdFilesArray.push(absolutePath);
         }else{
            // Valida que en caso de no encontrar archivos .MD muestre el mensaje informativo
-            console.log(chalk.bgYellow.bold('---------- WARNING: no .md files ----------'));          
+            console.log(chalk.bgYellow.bold('------ ADVERTENCIA: no hay archivos .md ------'));          
         }
       }
 
@@ -52,7 +52,7 @@ import {existPath,
           getHttpResponse(result)
             .then((result) => {
               const resultValidateAndStats = getResultValidateStats(result)
-              console.log(chalk.bgGreen.bold('---------- Result Analysis Validate and Stats ----------'))
+              console.log(chalk.bgGreen.bold('------ Validación de análisis de resultados y estadísticas ------'))
               console.log(resultValidateAndStats)
               resolve(resultValidateAndStats)
             })
@@ -66,7 +66,7 @@ import {existPath,
             .then((result) => {
               const validateLink = result
               resolve(validateLink)
-              console.log(chalk.bgGreen.bold('---------- Result Analysis Validate ----------'))
+              console.log(chalk.bgGreen.bold('------ Validar analisis de resultado ------'))
               console.log(validateLink)
             })
         });
@@ -75,7 +75,7 @@ import {existPath,
       analyzeMdFilesArray(mdFilesArray)
         .then((result) => {
           const valueStats = getStatsResult(result)
-          console.log(chalk.bgGreen.bold('---------- Result Analysis Stats ----------'))
+          console.log(chalk.bgGreen.bold('------ Validar analisis de resultado ------'))
           console.log(valueStats)
           resolve(valueStats)
         });
@@ -85,15 +85,12 @@ import {existPath,
         .then((result) => {
           const noOptions = result;
           resolve(noOptions)
-          console.log(chalk.bgGreen.bold('---------- Result Analysis .md DOCUMENT ----------'))
+          console.log(chalk.bgGreen.bold('------ Analisis de resultado DOCUMENTO md. -------'))
           console.log(noOptions)
         });
       }
     }else{
-      console.log(chalk.bgRed.bold("---------- ERROR: The path does not exist ----------"));
+      console.log(chalk.bgRed.bold("------ ERROR: La Ruta no existe ------"));
     }
   }
 )};
-
-
-// /https:\/\/[^\s]+/g

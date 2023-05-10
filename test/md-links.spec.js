@@ -1,4 +1,4 @@
-import { default as existPath, 
+import { existPath, 
   existMdFile, 
   convertToAbsolute, 
   getAllFilesDirectory, 

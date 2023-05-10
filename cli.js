@@ -20,6 +20,6 @@ if (path) {
   } else if ((option1 === '--validate' && option2 === '--stats') || (option1 === '--stats' && option2 === '--validate')) {
     mdLinks(path, { validate: true, stats: true }).then(result => result)
   } else {
-    console.log(chalk.bgBlue.bold('------ ERROR: Verifique sus parámetros ------'))
+    console.log(chalk.bgRed.bold('------ ERROR: Verifique sus parámetros ------'))
   }
 };
