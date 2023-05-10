@@ -1,9 +1,13 @@
 import {default as chalk} from 'chalk';
-import { existPath,
+import {existPath,
+  existMdFile,
   convertToAbsolute,
   validateDirectory,
-  existMdFile,
-  getAllFilesDirectory
+  getResultValidateStats,
+  getAllFilesDirectory,
+  analyzeMdFilesArray,  
+  getHttpResponse,
+  getStatsResult
 } from './function.js';
 
  export const mdLinks = (path, options) => {
@@ -16,43 +20,80 @@ import { existPath,
       console.log(chalk.bgBlue.bold("------ INFO: la ruta existe ------"));
       // convertir a una ruta absoluta 
       const absolutePath = convertToAbsolute(path);
-     // console.log('Resultado absolute path: ' + absolutePath);
+      // console.log('Resultado absolute path: ' + absolutePath);
       // valida que el path sea de un directorio
-    if(validateDirectory(absolutePath)){
-      console.log('Registros: ' + getAllFilesDirectory(absolutePath));
-      getAllFilesDirectory(absolutePath).forEach(file => { // readAllFilesRecursive obtiene los archivos que hay dentro del directorio
-        if(existMdFile(file)){ // valida archivo por archivo para saber si es o no .MD
-          mdFilesArray.push(file); // En caso de encontrarlo lo almacena en un array
-        }else{
-          if(mdFilesArray === []){ // Valida que en caso de no encontrar archivos .MD muestre el mensaje informativo
-            console.log(chalk.bgYellow.bold('---------- WARNING: no .md files ----------'));
+      if(validateDirectory(absolutePath)){
+        console.log('Registros: ' + getAllFilesDirectory(absolutePath));
+        getAllFilesDirectory(absolutePath).forEach(file => { // readAllFilesRecursive obtiene los archivos que hay dentro del directorio
+          if(existMdFile(file)){ // valida archivo por archivo para saber si es o no .MD
+            mdFilesArray.push(file); // En caso de encontrarlo lo almacena en un array
+          }else{
+            if(mdFilesArray === []){ // Valida que en caso de no encontrar archivos .MD muestre el mensaje informativo
+              console.log(chalk.bgYellow.bold('---------- WARNING: no .md files ----------'));
+            }
           }
+        });
+      } else {
+        // Entra a validar cuando por el path se pasa el archivo .md: node cli.js ./testing/testConLinks01.md --validate --stats
+        if(existMdFile(absolutePath)){ 
+          mdFilesArray.push(absolutePath);
+        }else{
+           // Valida que en caso de no encontrar archivos .MD muestre el mensaje informativo
+            console.log(chalk.bgYellow.bold('---------- WARNING: no .md files ----------'));          
         }
-        
-      });
+      }
+
+    //--------------------------------------------------------------------------------------------
+    //En esta sección comienza a validar los parámetros enviados: **--validate** y **--stats**
+    //Este es el proceso para realizar el proceso de Validate y Stats ()
+    if (options.validate === true && options.stats === true) {
+      analyzeMdFilesArray(mdFilesArray)
+        .then((result) => {
+          getHttpResponse(result)
+            .then((result) => {
+              const resultValidateAndStats = getResultValidateStats(result)
+              console.log(chalk.bgGreen.bold('---------- Result Analysis Validate and Stats ----------'))
+              console.log(resultValidateAndStats)
+              resolve(resultValidateAndStats)
+            })
+        });
+    //Este es el proceso para realizar el proceso de Validate
+    } else if (options.validate === true && options.stats === false) {
+
+      analyzeMdFilesArray(mdFilesArray)
+        .then((result) => {
+          getHttpResponse(result)
+            .then((result) => {
+              const validateLink = result
+              resolve(validateLink)
+              console.log(chalk.bgGreen.bold('---------- Result Analysis Validate ----------'))
+              console.log(validateLink)
+            })
+        });
+    //Este es el proceso para realizar el proceso de Stats
+    } else if (options.stats === true  && options.validate === false) {
+      analyzeMdFilesArray(mdFilesArray)
+        .then((result) => {
+          const valueStats = getStatsResult(result)
+          console.log(chalk.bgGreen.bold('---------- Result Analysis Stats ----------'))
+          console.log(valueStats)
+          resolve(valueStats)
+        });
+    // Acá ingresa cuando no se tienen agregadas las banderas y se pasa unicamente el path
+    } else {
+      analyzeMdFilesArray(mdFilesArray)
+        .then((result) => {
+          const noOptions = result;
+          resolve(noOptions)
+          console.log(chalk.bgGreen.bold('---------- Result Analysis .md DOCUMENT ----------'))
+          console.log(noOptions)
+        });
+      }
+    }else{
+      console.log(chalk.bgRed.bold("---------- ERROR: The path does not exist ----------"));
     }
-    // obtiene los archivos que hay dentro del directorio
-    console.log('Resultado de validar el directorio: ' +validateDirectory(absolutePath))
-    getAllFilesDirectory(absolutePath).forEach(file => {
-    // valida archivo por archivo para saber si es o no .MD
-      if(existMdFile(file)){ 
-    // En caso de encontrarlo lo almacena en un array
-        mdFilesArray.push(file); 
-      }else{
-        // Valida que en caso de no encontrar archivos .MD muestre el mensaje informativo
-        if(mdFilesArray === []){ 
-          console.log(chalk.bgRed.bold('------ ERROR: sin archivos md. ------'));
-        }
-    
-    // si no existe la ruta rechaza la promesa
-    //reject("la ruta no existe");
-    }
-    })
   }
-  
-  })
-  
-};
+)};
 
 
 // /https:\/\/[^\s]+/g
