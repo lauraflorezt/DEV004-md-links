@@ -10,24 +10,25 @@ import { existPath,
   getHttpResponse,
 } from '../function.js';
 
-// Method process.cwd = current working directory
+// Metodo process.cwd = devuelve el directorio de trabajo actual del proceso Node.js
 const currentDir = `${process.cwd()}`;
 
-// describe("existPath", () => {
-//   it("Debe ser una función", () => {
-//     expect(typeof existPath).toEqual("function");
-//   });
-//   it("Debe validar cuando el path existe", () => {
-//     existPath("../testing/archivo.md");
-//     expect(existPath("../testing/archivo.md")).toBe(true);
-//   });
-//   it("Debe validar cuando el path no existe", () => {
-//     existPath("../testing/test1.md");
-//     expect(existPath("../testing/test1.md")).toBe(false);
-//   });
-// });
+ describe("existPath", () => {
+ it("Debe ser una función", () => {
+  //typeof para encontrar el tipo de dato de una variable de JS
+    expect(typeof existPath).toEqual("function");
+   });
+   it("Debe validar cuando el path existe", () => {
+   existPath("../testing/archivo.md");
+    expect(existPath("../DEV004-md-links/README.md")).toBe(true);
+  });
+  it("Debe validar cuando el path no existe", () => {
+    existPath("../testing/test1.md");
+    expect(existPath("../testing/test1.md")).toBe(false);
+  });
+});
 
-// Test para validar si es archivo es tipo .md
+// Test para validar si el archivo es tipo .md
 describe("existMdFile", () => {
   it("Debe ser una función", () => {
     expect(typeof existMdFile).toBe("function");
@@ -37,7 +38,7 @@ describe("existMdFile", () => {
     expect(existMdFile("./README.md")).toBe(true);
   });
   it("Debe devolver false si el archivo no es tipo .md", () => {
-    existMdFile("./README.md");
+    existMdFile("./package.json");
     expect(existMdFile("./package.json")).toBe(false);
   });
 });
@@ -92,7 +93,7 @@ describe('analyzeMdFilesArray, entrega el array de objetos luego de leer cada ar
     expect(typeof analyzeMdFilesArray([]).then).toBe('function')
   });
   it('retorna un array de objetos', () => {
-    expect(analyzeMdFilesArray(['./testing/testConLinks01.md'])).resolves.toEqual(arrayObjects)
+    expect(analyzeMdFilesArray(['./testing/archivo.md'])).resolves.toEqual(arrayObjects)
   });
 
   // Test para validar --stats
