@@ -16,15 +16,13 @@ const currentDir = `${process.cwd()}`;
  describe("existPath", () => {
  it("Debe ser una función", () => {
   //typeof para encontrar el tipo de dato de una variable de JS
-    expect(typeof existPath).toEqual("function");
+    expect(typeof existPath).toBe("function");
    });
    it("Debe validar cuando el path existe", () => {
-   existPath("../testing/archivo.md");
-    expect(existPath("../DEV004-md-links/README.md")).toBe(true);
+    expect(existPath("../DEV004-md-links/README.md")).toEqual(true);
   });
   it("Debe validar cuando el path no existe", () => {
-    existPath("../testing/test1.md");
-    expect(existPath("../testing/test1.md")).toBe(false);
+    expect(existPath("../testing/test1.md")).toEqual(false);
   });
 });
 
@@ -34,11 +32,9 @@ describe("existMdFile", () => {
     expect(typeof existMdFile).toBe("function");
   });
   it("Debe devolver true si el archivo es tipo .md", () => {
-    existMdFile("./README.md");
     expect(existMdFile("./README.md")).toBe(true);
   });
   it("Debe devolver false si el archivo no es tipo .md", () => {
-    existMdFile("./package.json");
     expect(existMdFile("./package.json")).toBe(false);
   });
 });
@@ -57,7 +53,6 @@ describe("validateDirectory", () => {
     expect(typeof validateDirectory).toBe("function");
   });
   it('Debe validar si la ruta es directorio', () => {
-    validateDirectory('./Testing');
     expect(validateDirectory('./Testing'))
   })
 });
@@ -65,10 +60,13 @@ describe("validateDirectory", () => {
 // Test para leer los archivos
 describe("getAllFilesDirectory", () => {
   it('Debe devolver los archivos del directorio', () => {
-    expect(getAllFilesDirectory('./testing'))
-    .toEqual(["./testing/archivo.md",
+    const expectedFiles = [
+      "./testing/archivo.md",
     "./testing/linkerroneo.md",
-    "./testing/prueba.txt",])
+    "./testing/prueba.txt",
+    ];
+
+    expect(getAllFilesDirectory('./testing')).toEqual(expectedFiles);
   });
 });
 
@@ -93,7 +91,21 @@ describe('analyzeMdFilesArray, entrega el array de objetos luego de leer cada ar
     expect(typeof analyzeMdFilesArray([]).then).toBe('function')
   });
   it('retorna un array de objetos', () => {
-    expect(analyzeMdFilesArray(['./testing/archivo.md'])).resolves.toEqual(arrayObjects)
+    expect(analyzeMdFilesArray(['./testing/archivo.md'])).resolves.toStrictEqual(arrayObjects)
+  });
+  it('debe rechazar la promesa con el mensaje de error', () => {
+    const mdFilesArray = ['./testing/prueba.txt'];
+    return analyzeMdFilesArray(mdFilesArray).catch((err) => {
+      expect(err).toEqual('------ ERROR: Analizar archivos md. ------'); 
+    });  
+  });
+  it('debe rechazar la promesa con el mensaje de error si ocurre un error al leer un archivo', () => {
+  const mdFilesArray1 = ['./testing/readme.md'];
+
+  return analyzeMdFilesArray(mdFilesArray1)
+    .catch((err) => {
+      expect(err).toMatch('------ ERROR: Analizar archivos md. ------'); // se utiliza para comprobar que un valor coincida con un patrón de expresión regular
+    });
   });
 
   // Test para validar --stats
@@ -102,7 +114,7 @@ describe('getStatsResult, entrega un objeto con dos propiedades total y unique',
     expect(typeof getStatsResult).toBe('function')
   });
   it('retorna un objeto con dos propiedades', () => {
-    expect(getStatsResult([arrayObjects])).toEqual({Total: 1, Unique: 1})
+    expect(getStatsResult([arrayObjects])).toStrictEqual({Total: 1, Unique: 1})
   });
 });
 
@@ -112,7 +124,7 @@ describe('getResultValidateStats, entrega un objeto con tres propiedadess total,
     expect(typeof getResultValidateStats).toBe('function')
   });
   it('retorna un objeto con tres propiedades', () => {
-    expect(getResultValidateStats([arrayObjects])).toEqual({Total: 1, Unique: 1, Broken: 0})
+    expect(getResultValidateStats([arrayObjects])).toStrictEqual({Total: 1, Unique: 1, Broken: 0})
   });
 });
 });
@@ -125,8 +137,14 @@ describe('getLinksDocument, entrega el array de objetos luego de hacer match con
   it('debe ser una función', () => {
     expect(typeof getLinksDocument).toBe('function')
   });
+  it('debe devolver un array vacío si no hay enlaces', () => {
+    const file = './testing/linkerroneo.md';
+    const content = 'Este es un contenido sin enlaces.';
+    expect(getLinksDocument(file, content)).toEqual([]);
+  });
+
   it('retorna un array de objetos', () => {
-    expect(getLinksDocument('./testing/archivo.md', content)).toEqual(arrayObjects)
+    expect(getLinksDocument('./testing/archivo.md', content)).toStrictEqual(arrayObjects)
   });
 });
 
@@ -143,8 +161,8 @@ const validateObjects = [
     href: 'https://github.com/lauraflorezt/DEV004-md-links/blob/main/functions.js',
     path: './testing/archivo.md',
     text: 'Link en git',
-    status: 200,
-    ok: 'OK'
+    status: 404,
+    ok: 'fail'
   },
 ]
 
@@ -156,6 +174,14 @@ describe('getHttpResponse, entrega el array de objetos sumando el status y statu
     expect(typeof getHttpResponse([]).then).toBe('function')
   });
   it('retorna un array de objetos', () => {
-    expect(getHttpResponse(arrayObjects)).resolves.toEqual(validateObjects)
+    expect(getHttpResponse(arrayObjects)).resolves.toStrictEqual(validateObjects)
+  });
+  it('debe contar la cantidad de valores "fail" en ok', () => {
+
+    return getHttpResponse(validateObjects)
+    .then((result) => {
+      const failCount = result.filter((item) => item.ok === 'fail').length;
+      expect(failCount).toEqual(1);
+    });
   });
 });

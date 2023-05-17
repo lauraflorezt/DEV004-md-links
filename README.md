@@ -168,6 +168,10 @@ Broken: 1
 
 ![Diagrama de flujo CLI](imagenes/Diagrama%20CLI.png)
 
+CLI
+* [3. Consideraciones generales](#3-consideraciones-generales)
+
+
 ## 6. Comando de Instalacion 
 
 En tu consola ejecuta el siguiente comando:
