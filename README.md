@@ -5,8 +5,11 @@
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen ](#2-resumen)
 * [3. Consideraciones generales](#3-consideraciones-generales)
-* [4. Diagramas de Flujo](#4-Diagramas-de-Flujo)
-* [5. Comando de Instalacion ](#5-Comando-de-Instalacion )
+* [4. Diagramas de Flujo](#4-diagramas-de-Flujo)
+* [5. Comando de Instalacion ](#5-comando-de-Instalacion )
+* [6. CLI ](#6-cli )
+* [6. Pruebas unitarias ](#7-pruebas-unitarias )
+
 ***
 
 ## 1. Preámbulo
@@ -162,21 +165,58 @@ Unique: 3
 Broken: 1
 ```
 
-## 5. Diagramas de Flujo
+## 4. Diagramas de Flujo
+
+Se realizaron dos diagramas de Flujo para el API y CLI y asi poder visualizar mejor lo que se tiene que hacer y cumplir los objetivos.
+
+**Diagrama de flujo API**
 
 ![Diagrama de flujo API](imagenes/Diagrama%20API.png)
 
+**Diagrama de flujo CLI**
+
 ![Diagrama de flujo CLI](imagenes/Diagrama%20CLI.png)
 
-CLI
-* [3. Consideraciones generales](#3-consideraciones-generales)
 
 
-## 6. Comando de Instalacion 
+
+
+## 5. Comando de Instalacion 
 
 En tu consola ejecuta el siguiente comando:
 
 npm i mdlinks-lauflorez
+
+
+## 6. CLI
+
+Comandos para ejecutar en tu consola
+
+ * Proyecta los links que se encuentran en los archivos md.
+
+![comandos1](imagenes/comandos1.JPG)
+
+* Proyecta los links y sus status (fail en caso de fallo u ok en caso de éxito).
+
+![comandos2](imagenes/comando2.JPG)
+
+* Proyecta una estadistica de los links (total y unique ) .
+
+![comandos3](imagenes/comando3.JPG)
+
+* Proyecta una estadistica de los links (total, unique y broken) .
+
+![comandos4](imagenes/comando4.JPG)
+
+* Proyecta si escribo la opción incorrecta.
+
+![comandos5](imagenes/comando5.JPG)
+
+## 7. Pruebas unitarias
+
+Pruebas unitarias cubren un mínimo del 70% de statements, functions, lines, y branches y se realizaron 25.
+
+![pruebas unitarias](imagenes/Pruebas%20unitarias.JPG)
 
 
 
