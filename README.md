@@ -179,9 +179,7 @@ Se realizaron dos diagramas de Flujo para el API y CLI y asi poder visualizar me
 
 
 
-
-
-## 5. Comando de nnstalacion 
+## 5. Comando de instalacion 
 
 En tu consola ejecuta el siguiente comando:
 
