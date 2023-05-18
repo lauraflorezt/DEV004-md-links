@@ -113,7 +113,7 @@ const getHttpResponse = (mdFilesArrayLink) => {
   const validate = mdFilesArrayLink.map((link) => {
     return axios.get(link.href) // devuelve una promesa que se resuelve con el resultad de la solicitud 
       .then((result) => { //objeto de respuesta exitosa de peticiones 
-        const responseValidate = {
+        const responseValidate = { 
           ...link, // para agregar lo de link
           status: result.status,
           ok: result.statusText

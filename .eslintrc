@@ -5,5 +5,13 @@
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module"
+  },
+  
+    "plugins": [
+      "es"
+    ],
+    "rules": {
+      "es/no-object-spread": 0
+    }
   }
-}
+

@@ -1,6 +1,6 @@
 {
   "name": "mdlinks-lauflorez",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "engines": {
     "node": ">=16.x"
@@ -38,6 +38,7 @@
     "process": "^0.11.10"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.21.5"
+    "@babel/plugin-transform-modules-commonjs": "^7.21.5",
+    "eslint": "^8.40.0"
   }
 }
