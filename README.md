@@ -208,6 +208,10 @@ Comandos para ejecutar en tu consola
 
 ![Comando4](https://github.com/lauraflorezt/DEV004-md-links/assets/121992038/587eb417-917a-49c4-bfb0-5a19de495433)
 
+* Proyecta la ruta pero si no tiene enlaces envia un error.
+
+![Comando6](https://github.com/lauraflorezt/DEV004-md-links/assets/121992038/9b7ee1d9-3e7e-4e2b-83ea-43d6bcbee8bf)
+
 * Proyecta si escribo la opción incorrecta.
 
 ![comandos5](imagenes/comando5.JPG)
