@@ -11,9 +11,9 @@ const option2 = process.argv[4]
 
 if (path) {
   console.log(chalk.bgBlue.bold("----- MdLinks Comenzar ------"));
-  if (option1 === undefined && option2 === undefined) {
-    mdLinks(path, { validate: false, stats: false }).then(result => result)
-  } else if (option1 === '--validate' && option2 === undefined) {
+  //if (option1 === undefined && option2 === undefined) {
+    //mdLinks(path, { validate: false, stats: false }).then(result => result)
+    if (option1 === '--validate' && option2 === undefined) {
     mdLinks(path, { validate: true, stats: false }).then(result => result)
   } else if (option1 === '--stats' && option2 === undefined) {
     mdLinks(path, { validate: false, stats: true }).then(result => result)

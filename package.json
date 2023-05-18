@@ -1,6 +1,6 @@
 {
   "name": "mdlinks-lauflorez",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "type": "module",
   "engines": {
     "node": ">=16.x"

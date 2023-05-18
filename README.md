@@ -216,7 +216,7 @@ Comandos para ejecutar en tu consola
 
 Pruebas unitarias cubren un mínimo del 70% de statements, functions, lines, y branches y se realizaron 25.
 
-![pruebas unitarias](imagenes/Pruebas%20unitarias.JPG)
+![pruebas unitarias](imagenes/Pruebas%20unitarias.png)
 
 
 
