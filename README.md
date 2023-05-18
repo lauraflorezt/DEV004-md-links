@@ -5,10 +5,10 @@
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen ](#2-resumen)
 * [3. Consideraciones generales](#3-consideraciones-generales)
-* [4. Diagramas de Flujo](#4-diagramas-de-Flujo)
-* [5. Comando de Instalacion ](#5-comando-de-Instalacion )
+* [4. Diagramas de Flujo](#4-Diagramas-de-Flujo)
+* [5. Comando de instalación ](#5-comando-de-instalación)
 * [6. CLI ](#6-cli )
-* [6. Pruebas unitarias ](#7-pruebas-unitarias )
+* [6. Pruebas unitarias ](#7-pruebas-unitarias)
 
 ***
 
@@ -181,7 +181,7 @@ Se realizaron dos diagramas de Flujo para el API y CLI y asi poder visualizar me
 
 
 
-## 5. Comando de Instalacion 
+## 5. Comando de nnstalacion 
 
 En tu consola ejecuta el siguiente comando:
 
@@ -193,20 +193,21 @@ npm i mdlinks-lauflorez
 Comandos para ejecutar en tu consola
 
  * Proyecta los links que se encuentran en los archivos md.
-
-![comandos1](imagenes/comandos1.JPG)
+ 
+![Comandos1](https://github.com/lauraflorezt/DEV004-md-links/assets/121992038/7774b8f3-b9cb-4271-9b7b-80fd28917237)
 
 * Proyecta los links y sus status (fail en caso de fallo u ok en caso de éxito).
 
-![comandos2](imagenes/comando2.JPG)
+![comando2](https://github.com/lauraflorezt/DEV004-md-links/assets/121992038/ea2b4029-9f3d-4a81-a18c-21d33cb9fbfb)
+.JPG)
 
 * Proyecta una estadistica de los links (total y unique ) .
 
-![comandos3](imagenes/comando3.JPG)
+![Comando3](https://github.com/lauraflorezt/DEV004-md-links/assets/121992038/fa36ef39-aa35-4e13-81b1-7dc76cdcd68a)
 
 * Proyecta una estadistica de los links (total, unique y broken) .
 
-![comandos4](imagenes/comando4.JPG)
+![Comando4](https://github.com/lauraflorezt/DEV004-md-links/assets/121992038/587eb417-917a-49c4-bfb0-5a19de495433)
 
 * Proyecta si escribo la opción incorrecta.
 
