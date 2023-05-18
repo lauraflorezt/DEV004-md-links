@@ -199,7 +199,6 @@ Comandos para ejecutar en tu consola
 * Proyecta los links y sus status (fail en caso de fallo u ok en caso de éxito).
 
 ![comando2](https://github.com/lauraflorezt/DEV004-md-links/assets/121992038/ea2b4029-9f3d-4a81-a18c-21d33cb9fbfb)
-.JPG)
 
 * Proyecta una estadistica de los links (total y unique ) .
 
